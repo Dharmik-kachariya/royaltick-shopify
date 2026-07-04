@@ -102,6 +102,62 @@
       hero.addEventListener('mouseleave', onMouseLeave);
       hero.addEventListener('mouseenter', onMouseEnter);
     });
+
+    // --- 3. Luxury Video Hero Reveal ---
+    const luxuryVideoHeros = document.querySelectorAll('.rt-luxury-video-hero');
+    luxuryVideoHeros.forEach(hero => {
+      // Reveal animations
+      const anims = hero.querySelectorAll('.rt-luxury-video-hero-anim');
+      const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            anims.forEach(anim => anim.classList.add('animate-in'));
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15 });
+      revealObserver.observe(hero);
+
+      // Handle video load / ready state
+      const video = hero.querySelector('.rt-luxury-video-hero__video');
+      const poster = hero.querySelector('.rt-luxury-video-hero__poster');
+      if (video) {
+        if (video.readyState >= 3) {
+          video.classList.add('video-loaded');
+          if (poster) poster.classList.add('video-ready');
+        } else {
+          video.addEventListener('canplay', () => {
+            video.classList.add('video-loaded');
+            if (poster) poster.classList.add('video-ready');
+          }, { once: true });
+        }
+      }
+    });
+
+    // --- 4. Transparent Header Scroll Observer ---
+    const firstHero = document.querySelector('.rt-luxury-video-hero-wrapper');
+    const header = document.querySelector('header-component');
+    if (firstHero && header) {
+      document.body.classList.add('rt-transparent-header-active');
+      
+      const headerObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) {
+            header.classList.add('header--scrolled');
+          } else {
+            header.classList.remove('header--scrolled');
+          }
+        });
+      }, {
+        root: null,
+        threshold: 0,
+        rootMargin: '-80px 0px 0px 0px'
+      });
+      
+      headerObserver.observe(firstHero);
+    } else {
+      document.body.classList.remove('rt-transparent-header-active');
+    }
   };
 
   // Run on page load

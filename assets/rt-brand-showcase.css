@@ -196,7 +196,7 @@
   position: relative;
   z-index: 1;
   overflow: hidden;
-}
+  height: 260px;
 
 /* Border Glow Accent on Hover */
 .rt-brand-showcase__card::before {
@@ -297,12 +297,13 @@
   }
   
   .rt-brand-showcase__cards {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 1rem;
   }
   
   .rt-brand-showcase__card {
     padding: 1.8rem 1.4rem;
+    height: 240px;
   }
   
   .rt-brand-showcase__header {

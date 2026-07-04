@@ -494,7 +494,148 @@
     data-blur-shadow="true"
   {% endif %}
 >
-  {%- if section.settings.hero_layout_style == 'luxury-split' -%}
+  {%- if section.settings.hero_layout_style == 'luxury-video' -%}
+    <!-- RoyalTick Premium Luxury Video Hero Layout -->
+    {{ 'rt-luxury-video-hero.css' | asset_url | stylesheet_tag }}
+    
+    {%- liquid
+      assign desktop_video = section.settings.rt_video_desktop
+      assign mobile_video = section.settings.rt_video_mobile | default: desktop_video
+      assign poster_image = section.settings.rt_video_poster
+      
+      assign is_first_section = false
+      if section.index == 1
+        assign is_first_section = true
+      endif
+    -%}
+    
+    <div 
+      class="rt-luxury-video-hero-wrapper"
+      style="
+        --rt-video-overlay-color: {{ section.settings.rt_video_overlay_color | default: '#000000' }};
+        --rt-video-overlay-opacity: {{ section.settings.rt_video_overlay_opacity | divided_by: 100.0 }};
+        --rt-video-content-width: {{ section.settings.content_max_width | default: 900 }}px;
+      "
+      data-layout-style="luxury-video"
+    >
+      <div class="rt-luxury-video-hero" style="height: var(--rt-video-hero-height-val, 100vh); min-height: var(--rt-video-hero-height-val, 100vh);">
+        <!-- Background Video & Poster -->
+        <div class="rt-luxury-video-hero__bg">
+          {%- if poster_image != blank -%}
+            <div 
+              class="rt-luxury-video-hero__poster" 
+              style="background-image: url('{{ poster_image | image_url: width: 1920 }}');"
+              data-poster-priority="{% if is_first_section %}high{% else %}low{% endif %}"
+            ></div>
+          {%- endif -%}
+
+          {%- if section.settings.rt_video_asset != blank -%}
+            <video
+              class="rt-luxury-video-hero__video"
+              autoplay
+              muted
+              loop
+              playsinline
+              preload="auto"
+              ref="heroVideo"
+            >
+              <source 
+                src="{{ section.settings.rt_video_asset | asset_url }}" 
+                type="video/mp4"
+              >
+            </video>
+          {%- elsif desktop_video != blank -%}
+            <video
+              class="rt-luxury-video-hero__video"
+              autoplay
+              muted
+              loop
+              playsinline
+              preload="auto"
+              ref="heroVideo"
+            >
+              <!-- Desktop Source -->
+              <source 
+                src="{{ desktop_video.sources[0].url }}" 
+                type="video/mp4"
+                media="(min-width: 768px)"
+              >
+              <!-- Mobile Source -->
+              <source 
+                src="{{ mobile_video.sources[0].url }}" 
+                type="video/mp4"
+                media="(max-width: 767px)"
+              >
+            </video>
+          {%- endif -%}
+        </div>
+
+        <!-- Dark Overlay -->
+        <div 
+          class="rt-luxury-video-hero__overlay" 
+          style="background-color: var(--rt-video-overlay-color); opacity: var(--rt-video-overlay-opacity);"
+        ></div>
+
+        <!-- Content -->
+        <div class="rt-luxury-video-hero__content-wrapper">
+          <div class="rt-luxury-video-hero__content">
+            {%- if section.settings.eyebrow != blank -%}
+              <span class="rt-luxury-video-hero__eyebrow rt-luxury-video-hero-anim rt-luxury-video-hero-anim--eyebrow">
+                {{- section.settings.eyebrow | escape -}}
+              </span>
+            {%- endif -%}
+
+            {%- if section.settings.heading != blank -%}
+              <h1 class="rt-luxury-video-hero__heading rt-luxury-video-hero-anim rt-luxury-video-hero-anim--heading">
+                {{- section.settings.heading -}}
+              </h1>
+            {%- endif -%}
+
+            {%- if section.settings.description != blank -%}
+              <div class="rt-luxury-video-hero__desc rt-luxury-video-hero-anim rt-luxury-video-hero-anim--desc">
+                {{- section.settings.description -}}
+              </div>
+            {%- endif -%}
+
+            {%- if section.settings.primary_btn_label != blank or section.settings.secondary_btn_label != blank -%}
+              <div class="rt-luxury-video-hero__buttons rt-luxury-video-hero-anim rt-luxury-video-hero-anim--buttons">
+                {%- if section.settings.primary_btn_label != blank -%}
+                  <a
+                    href="{{ section.settings.primary_btn_link | default: '#' }}"
+                    class="rt-luxury-video-hero__btn rt-luxury-video-hero__btn--primary"
+                    aria-label="{{ section.settings.primary_btn_label | escape }}"
+                  >
+                    {{- section.settings.primary_btn_label | escape -}}
+                  </a>
+                {%- endif -%}
+
+                {%- if section.settings.secondary_btn_label != blank -%}
+                  <a
+                    href="{{ section.settings.secondary_btn_link | default: '#' }}"
+                    class="rt-luxury-video-hero__btn rt-luxury-video-hero__btn--secondary"
+                    aria-label="{{ section.settings.secondary_btn_label | escape }}"
+                  >
+                    {{- section.settings.secondary_btn_label | escape -}}
+                  </a>
+                {%- endif -%}
+              </div>
+            {%- endif -%}
+          </div>
+        </div>
+
+        <!-- Scroll Indicator -->
+        {%- if section.settings.enable_scroll_indicator -%}
+          <div class="rt-luxury-video-hero__scroll-indicator rt-luxury-video-hero-anim rt-luxury-video-hero-anim--scroll" ref="scrollBtn">
+            <span class="rt-luxury-video-hero__scroll-mouse">
+              <span class="rt-luxury-video-hero__scroll-wheel"></span>
+            </span>
+            <span class="rt-luxury-video-hero__scroll-text">Scroll</span>
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+
+  {%- elsif section.settings.hero_layout_style == 'luxury-split' -%}
     <!-- LUXURY HERO -->
     <!-- RoyalTick Premium Luxury Split Hero Layout -->
     <div class="rt-hero__overlay"></div>
@@ -1411,9 +1552,74 @@
         {
           "value": "luxury-split",
           "label": "Luxury Split (Left Text, Right Image)"
+        },
+        {
+          "value": "luxury-video",
+          "label": "Luxury Video (Cinematic Video Background)"
         }
       ],
       "default": "default"
+    },
+    {
+      "type": "header",
+      "content": "Luxury Video Hero Options"
+    },
+    {
+      "type": "text",
+      "id": "rt_video_asset",
+      "label": "Video Asset Filename",
+      "info": "Overrides the video picker. (e.g. video home.mp4)"
+    },
+    {
+      "type": "video",
+      "id": "rt_video_desktop",
+      "label": "Desktop Video"
+    },
+    {
+      "type": "video",
+      "id": "rt_video_mobile",
+      "label": "Mobile Video (Falls back to Desktop if empty)"
+    },
+    {
+      "type": "image_picker",
+      "id": "rt_video_poster",
+      "label": "Video Poster Image"
+    },
+    {
+      "type": "color",
+      "id": "rt_video_overlay_color",
+      "label": "Video Overlay Color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "rt_video_overlay_opacity",
+      "label": "Video Overlay Opacity",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 45
+    },
+    {
+      "type": "select",
+      "id": "rt_video_hero_height",
+      "label": "Hero Height (Desktop/Tablet)",
+      "options": [
+        {
+          "value": "100vh",
+          "label": "100vh (Full Screen)"
+        },
+        {
+          "value": "80vh",
+          "label": "80vh"
+        },
+        {
+          "value": "60vh",
+          "label": "60vh"
+        }
+      ],
+      "default": "100vh"
     },
     {
       "type": "image_picker",
