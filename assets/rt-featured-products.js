@@ -373,8 +373,13 @@ class RTFeaturedProducts {
   dragStart(e) {
     this.isDragging = true;
     this.grid.style.scrollBehavior = 'auto';
-    this.startX = (e.pageX || e.touches[0].pageX) - this.grid.offsetLeft;
+    const pageX = e.pageX || (e.touches && e.touches[0] ? e.touches[0].pageX : 0);
+    const pageY = e.pageY || (e.touches && e.touches[0] ? e.touches[0].pageY : 0);
+    this.startX = pageX - this.grid.offsetLeft;
+    this.startY = pageY - this.grid.offsetTop;
     this.scrollLeft = this.grid.scrollLeft;
+    this.hasDeterminedDirection = false;
+    this.isScrollingVertical = false;
   }
 
   /**
@@ -382,8 +387,28 @@ class RTFeaturedProducts {
    */
   dragMove(e) {
     if (!this.isDragging) return;
+
+    const pageX = e.pageX || (e.touches && e.touches[0] ? e.touches[0].pageX : 0);
+    const pageY = e.pageY || (e.touches && e.touches[0] ? e.touches[0].pageY : 0);
+
+    if (e.touches && !this.hasDeterminedDirection) {
+      const diffX = Math.abs(pageX - (this.startX + this.grid.offsetLeft));
+      const diffY = Math.abs(pageY - (this.startY + this.grid.offsetTop));
+      
+      if (diffX < 5 && diffY < 5) return;
+      
+      this.hasDeterminedDirection = true;
+      if (diffY > diffX) {
+        this.isScrollingVertical = true;
+        this.isDragging = false;
+        return;
+      }
+    }
+
+    if (this.isScrollingVertical) return;
+
     e.preventDefault();
-    const x = (e.pageX || e.touches[0].pageX) - this.grid.offsetLeft;
+    const x = pageX - this.grid.offsetLeft;
     const walk = (x - this.startX) * this.dragMultiplier;
     this.grid.scrollLeft = this.scrollLeft - walk;
   }
