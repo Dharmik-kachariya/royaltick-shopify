@@ -34,7 +34,8 @@
   border-bottom: 1px solid var(--rt-border-color);
 }
 
-.rt-collection-hero__banner {
+.rt-collection-hero__banner,
+.rt-collection-hero__video {
   position: absolute;
   top: 0;
   left: 0;
@@ -43,11 +44,13 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  object-fit: cover;
   transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   z-index: 1;
 }
 
-.rt-collection-hero:hover .rt-collection-hero__banner {
+.rt-collection-hero:hover .rt-collection-hero__banner,
+.rt-collection-hero:hover .rt-collection-hero__video {
   transform: scale(1.03);
 }
 
@@ -1219,6 +1222,81 @@ product-swatches overflow-list::part(list) {
 
 .product-card .rt-luxury-chips {
   display: none !important; /* Hide technical chips inside grid cards for cleaner premium look */
+}
+
+/* Mobile Responsive Overrides for Catalog Grid & Product Cards */
+@media screen and (max-width: 989px) {
+  /* Force single column layout on mobile for premium look and spacing */
+  .main-collection-grid,
+  .product-grid,
+  .rt-product-grid {
+    grid-template-columns: 1fr !important;
+    gap: 24px !important;
+    padding-inline: 16px !important;
+  }
+
+  /* Make product cards wider and more spacious */
+  .product-card {
+    padding: 20px !important;
+    border-radius: 16px !important;
+    background-color: #111111 !important;
+    border: 1px solid rgba(255, 255, 255, 0.05) !important;
+  }
+
+  /* Fix vendor wrap and align */
+  .rt-card-vendor {
+    font-size: 10px !important;
+    margin-bottom: 6px !important;
+  }
+
+  /* Fix title size on mobile */
+  .product-card .product-title,
+  .product-card [role="heading"],
+  .product-card .product-title p {
+    font-size: 20px !important;
+    height: auto !important;
+    margin-bottom: 8px !important;
+  }
+
+  /* Description text */
+  .rt-card-subtitle {
+    font-size: 13px !important;
+    margin-bottom: 12px !important;
+    -webkit-line-clamp: 2 !important;
+  }
+
+  /* Fix prices wrap and contrast */
+  .product-card .price {
+    font-size: 22px !important;
+    margin-bottom: 12px !important;
+    display: flex !important;
+    flex-wrap: wrap !important;
+    align-items: center !important;
+    gap: 8px !important;
+  }
+
+  .product-card .price__compare,
+  .product-card .price s {
+    font-size: 14px !important;
+    color: rgba(255, 255, 255, 0.4) !important;
+    margin-left: 0 !important;
+  }
+
+  /* Card bottom actions (View Details & ATC buttons) */
+  .rt-card-bottom-actions {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 12px !important;
+    margin-top: 8px !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .rt-card-btn {
+    padding: 10px 12px !important;
+    font-size: 12px !important;
+    letter-spacing: 1px !important;
+  }
 }
 
 

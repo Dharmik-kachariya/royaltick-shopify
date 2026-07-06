@@ -178,12 +178,16 @@
 
   /* Mobile styles */
   @media screen and (max-width: 749px) {
+    .product-information__grid {
+      grid-template-columns: 1fr;
+    }
+
     .product-information__media {
       grid-column: 1 / -1;
     }
 
     .product-details {
-      grid-column: 2 / 3;
+      grid-column: 1 / -1;
     }
   }
 

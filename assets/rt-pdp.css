@@ -714,28 +714,7 @@ product-recommendations .h4 {
   color: var(--color-primary) !important;
 }
 
-/* Luxury Header Override */
-.shopify-section-group-header-group .header-wrapper,
-.header-wrapper,
-.header,
-.header-wrapper * {
-  background-color: var(--color-bg) !important;
-  color: var(--color-primary) !important;
-}
 
-.header-wrapper {
-  border-bottom: 1px solid var(--color-border) !important;
-}
-
-.header__heading-link .h2 {
-  color: var(--color-primary) !important;
-}
-
-.header__icon svg path,
-.header__icon svg circle,
-.header__icon svg line {
-  stroke: var(--color-primary) !important;
-}
 
 /* =========================================================================
    PDP TYPOGRAPHY & UI STRICT OVERRIDES 
@@ -1238,4 +1217,36 @@ product-recommendations .h4 {
   width: 100px !important;
   height: 100px !important;
 }
+
+/* Mobile Responsive Overrides for Media Gallery & Thumbnails */
+@media screen and (max-width: 749px) {
+  /* Fix slideshow thumbnails horizontal scroll alignment on mobile */
+  slideshow-controls[thumbnails] {
+    width: 100% !important;
+    display: block !important;
+  }
+  
+  .slideshow-controls__thumbnails-container {
+    width: 100% !important;
+    overflow-x: auto !important;
+    justify-content: flex-start !important;
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+  
+  .slideshow-controls__thumbnails {
+    margin: 0 !important;
+    padding: 0 !important;
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    gap: 12px !important;
+  }
+  
+  .slideshow-controls__thumbnail {
+    flex-shrink: 0 !important;
+    width: 72px !important;
+    height: 72px !important;
+  }
+}
+
 

@@ -50,6 +50,14 @@
     endif
   %}
 
+  {% style %}
+    @media screen and (max-width: 749px) {
+      #product-recommendations-{{ section.id }} .resource-list--grid {
+        grid-template-columns: 1fr !important;
+      }
+    }
+  {% endstyle %}
+
   <div
     class="section-background{% if section.settings.background_color != blank %} color-custom-{{ section.id }}{% endif %}"
   ></div>

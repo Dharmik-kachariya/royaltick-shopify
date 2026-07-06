@@ -25,7 +25,18 @@
   
   <!-- SECTION 1: Luxury Hero Banner -->
   <div class="rt-collection-hero">
-    {%- if section.settings.rt_banner_image != blank -%}
+    {%- if section.settings.rt_banner_video != blank -%}
+      {{
+        section.settings.rt_banner_video
+        | video_tag:
+          poster: nil,
+          autoplay: true,
+          loop: true,
+          controls: false,
+          muted: true,
+          class: 'rt-collection-hero__video'
+      }}
+    {%- elsif section.settings.rt_banner_image != blank -%}
       <div class="rt-collection-hero__banner" style="background-image: url('{{ section.settings.rt_banner_image | image_url: width: 1800 }}');"></div>
     {%- else -%}
       <div class="rt-collection-hero__banner" style="background-image: url('{{ collection.image | image_url: width: 1800 }}');"></div>
@@ -227,6 +238,12 @@
       "id": "rt_banner_image",
       "label": "Hero Banner Background",
       "info": "Fallback to the collection featured image if empty."
+    },
+    {
+      "type": "video",
+      "id": "rt_banner_video",
+      "label": "Hero Banner Video",
+      "info": "If uploaded, this video will play in the background instead of the image."
     },
     {
       "type": "checkbox",
