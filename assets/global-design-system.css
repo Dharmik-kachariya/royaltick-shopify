@@ -1339,10 +1339,475 @@ body:has(.header[transparent]) .shopify-section-group-header-group {
   text-decoration: line-through !important;
 }
 
+/* --- Mobile Header Layout (Left Menu, Center Logo, Right Actions) --- */
+@media screen and (max-width: 749px) {
+  #header-component .header__columns {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    position: relative !important;
+    padding: 0 15px !important;
+  }
+  
+  /* Force logo to be exactly in the center */
+  #header-component .header-logo {
+    position: absolute !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    margin: 0 !important;
+  }
 
+  /* Make sure right side icons container packs them tightly */
+  #header-component header-actions {
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important; /* Reduce space between profile and cart */
+  }
 
+  /* Any other actions wrapper, reset gap */
+  #header-component .header-actions__action {
+    padding: 4px !important;
+    margin: 0 !important;
+  }
 
+  /* If search is separate from header-actions, force it to the right with flex */
+  .rt-hero__scroll-wheel {
+    animation: none !important;
+    top: 6px !important;
+  }
+  
+  .rt-hero__btn {
+    transition: none !important;
+  }
+  
+  .rt-hero__btn:hover {
+    transform: none !important;
+  }
+}
 
+/* Mobile & Tablet Specific Styling */
+@media screen and (max-width: 989px) {
+  .rt-hero__split-grid {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 2.5rem;
+  }
 
+  .rt-hero__split-content {
+    align-items: center;
+    text-align: center;
+    margin-inline: auto;
+    order: 2;
+  }
 
+  .rt-hero__split-media {
+    order: 1;
+  }
+
+  .rt-hero__media-parallax {
+    max-width: 340px;
+  }
+
+  .rt-hero__buttons {
+    justify-content: center;
+  }
+
+  .rt-hero__scroll-indicator {
+    display: none;
+  }
+}
+
+/* =========================================================================
+   GLOBAL LUXURY HEADER & MENU DRAWER STRICT OVERRIDES 
+   ========================================================================= */
+
+/* Luxury Header Override */
+#header-group,
+.shopify-section-group-header-group,
+.shopify-section-group-header-group .header-wrapper,
+.header-wrapper,
+.header,
+.header-wrapper * {
+  background-color: var(--color-bg, #0D0D0D) !important;
+  color: var(--color-primary, #FFFFFF) !important;
+}
+
+/* Ensure transparent header group remains transparent */
+body:has(.header[transparent]) #header-group,
+body:has(.header[transparent]) .shopify-section-group-header-group {
+  background-color: transparent !important;
+}
+
+/* Force Dark Menu Drawer */
+.menu-drawer,
+.menu-drawer__submenu,
+.menu-drawer__inner-submenu,
+.menu-drawer__navigation,
+.menu-drawer__menu,
+.menu-drawer__list-item,
+.menu-drawer__list-item--deep,
+.menu-drawer__list-item--flat {
+  background-color: #0D0D0D !important;
+}
+
+.menu-drawer a,
+.menu-drawer button,
+.menu-drawer span,
+.menu-drawer summary,
+.menu-drawer__menu-item,
+.menu-drawer__close-button,
+.menu-drawer__back-button {
+  color: #FFFFFF !important;
+}
+
+/* Reduce Menu Drawer font sizes */
+.menu-drawer__menu-item--mainlist {
+  font-size: 22px !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.05em !important;
+  text-transform: uppercase !important;
+}
+
+.menu-drawer__menu-item--parent {
+  font-size: 16px !important;
+  font-weight: 400 !important;
+}
+
+.menu-drawer__menu-item--child {
+  font-size: 14px !important;
+  font-weight: 400 !important;
+}
+
+.header-wrapper {
+  border-bottom: 1px solid var(--color-border, rgba(255, 255, 255, 0.08)) !important;
+}
+
+.header__heading-link .h2 {
+  color: var(--color-primary, #FFFFFF) !important;
+}
+
+.header__icon svg path,
+.header__icon svg circle,
+.header__icon svg line {
+  stroke: var(--color-primary, #FFFFFF) !important;
+}
+
+/* Featured Content inside Menu Drawer Styling */
+.menu-drawer .resource-card__title {
+  font-size: 13px !important;
+  line-height: 1.3 !important;
+  font-weight: 500 !important;
+  margin-bottom: 4px !important;
+  color: #FFFFFF !important;
+}
+
+.menu-drawer .price {
+  font-size: 13px !important;
+  margin-top: 4px !important;
+}
+
+.menu-drawer .price * {
+  font-size: 13px !important;
+}
+
+.menu-drawer .price__container {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: wrap !important;
+  gap: 6px !important;
+  align-items: center !important;
+}
+
+.menu-drawer .price-item {
+  font-size: 13px !important;
+  line-height: 1 !important;
+}
+
+.menu-drawer .price-item--sale {
+  color: #C8A74E !important;
+  font-weight: 600 !important;
+}
+
+.menu-drawer .price-item--regular {
+  color: rgba(255, 255, 255, 0.4) !important;
+  text-decoration: line-through !important;
+}
+
+/* --- Mobile Header Layout (Left Menu, Center Logo, Right Actions) --- */
+@media screen and (max-width: 749px) {
+  #header-component .header__columns {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    position: relative !important;
+    padding: 0 15px !important;
+  }
+  
+  /* Force logo to be exactly in the center */
+  #header-component .header-logo {
+    position: absolute !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    margin: 0 !important;
+  }
+
+  /* Make sure right side icons container packs them tightly */
+  #header-component header-actions {
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important; /* Reduce space between profile and cart */
+  }
+
+  /* Any other actions wrapper, reset gap */
+  #header-component .header-actions__action {
+    padding: 4px !important;
+    margin: 0 !important;
+  }
+
+  /* If search is separate from header-actions, force it to the right with flex */
+  #header-component .search-action {
+    margin-left: auto !important; /* Push it to the right */
+    margin-right: 8px !important;
+  }
+
+  /* Wrap the right side actions via flex order if possible, but since we absolute center the logo, search-action and header-actions will naturally fall to the right if we use margin-left: auto on search */
+  #header-component .header__icon--menu {
+    flex: 0 0 auto !important;
+  }
+}
+
+/* =========================================================================
+   GLOBAL LUXURY FOOTER STRICT OVERRIDES 
+   ========================================================================= */
+
+/* 1. Main Footer Background & Spacing */
+.shopify-section-group-footer-group,
+#shopify-section-footer,
+.footer,
+.footer-wrapper {
+  background-color: var(--color-bg, #050505) !important; /* Extremely dark, premium background */
+  color: #8e8e93 !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.05) !important;
+}
+
+/* Give the footer generous breathing room */
+.footer__content-top {
+  padding-top: 5rem !important;
+  padding-bottom: 5rem !important;
+}
+
+@media screen and (max-width: 749px) {
+  .footer__content-top {
+    padding-top: 3rem !important;
+    padding-bottom: 3rem !important;
+  }
+}
+
+/* 2. Footer Headings (H4) */
+.shopify-section-group-footer-group h4,
+.footer-content h4,
+.footer-block h4,
+#shopify-section-footer h4,
+.footer-block__heading {
+  font-family: 'Cormorant Garamond', serif !important;
+  font-size: 1.25rem !important;
+  letter-spacing: 0.12em !important;
+  text-transform: uppercase !important;
+  color: #FFFFFF !important;
+  margin-bottom: 1.5rem !important;
+  font-weight: 500 !important;
+}
+
+/* 3. Footer Body Text (Paragraphs) */
+.shopify-section-group-footer-group p,
+.footer-content p,
+.footer-block p,
+#shopify-section-footer p {
+  font-family: var(--rt-font-body) !important;
+  font-size: 0.85rem !important;
+  line-height: 1.8 !important;
+  color: #8e8e93 !important;
+  font-weight: 400 !important;
+}
+
+/* Newsletter Description (Subtext) overrides */
+.footer-block--newsletter p,
+.footer-block__newsletter p,
+.newsletter-form__wrapper p,
+form[action*="contact"] p,
+.footer-block:last-child p {
+  font-size: 0.8rem !important;
+  color: rgba(142, 142, 147, 0.8) !important;
+  margin-bottom: 1.2rem !important;
+}
+
+/* 4. Footer Links (Menus) */
+.shopify-section-group-footer-group .list-menu__item,
+.footer-block__details-content .list-menu__item,
+.footer .list-menu__item {
+  font-family: var(--rt-font-body) !important;
+  font-size: 0.85rem !important;
+  line-height: 1.8 !important;
+  color: #8e8e93 !important;
+  text-decoration: none !important;
+  transition: color var(--rt-transition-normal), transform var(--rt-transition-normal) !important;
+  padding: 0.4rem 0 !important;
+  display: inline-block !important;
+}
+
+.shopify-section-group-footer-group .list-menu__item:hover,
+.footer-block__details-content .list-menu__item:hover {
+  color: var(--rt-hover-color, var(--rt-gold)) !important;
+  transform: translateX(4px) !important; /* Smooth right slide on hover */
+}
+
+/* 5. Newsletter Input Form - Ultra Premium Minimalist */
+.shopify-section-group-footer-group .newsletter-form__field-wrapper,
+.footer .newsletter-form__field-wrapper {
+  max-width: 100% !important;
+  position: relative !important;
+}
+
+/* Kill all default Dawn field backgrounds, borders, and pseudo-elements */
+.shopify-section-group-footer-group .field,
+.footer .field,
+.shopify-section-group-footer-group .field:before,
+.shopify-section-group-footer-group .field:after,
+.footer .field:before,
+.footer .field:after,
+.shopify-section-group-footer-group .field:focus-within:after,
+.footer .field:focus-within:after {
+  background: transparent !important;
+  background-color: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  outline: none !important;
+  content: none !important;
+  display: none !important;
+}
+
+/* Make sure the field itself is displayed properly since we hid pseudo elements */
+.shopify-section-group-footer-group .field,
+.footer .field {
+  display: flex !important;
+  align-items: center !important;
+  position: relative !important;
+}
+
+.shopify-section-group-footer-group .field__input,
+.footer .field__input {
+  background: transparent !important;
+  background-color: transparent !important;
+  border: none !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2) !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  color: #FFFFFF !important;
+  font-size: 0.95rem !important;
+  padding: 0.8rem 2.5rem 0.8rem 0 !important; /* Extra padding on right for button */
+  transition: border-color var(--rt-transition-normal) !important;
+  -webkit-appearance: none;
+  appearance: none;
+  outline: none !important;
+  width: 100% !important;
+}
+
+.shopify-section-group-footer-group .field__input:focus,
+.footer .field__input:focus,
+.shopify-section-group-footer-group .field__input:focus-visible,
+.footer .field__input:focus-visible,
+.shopify-section-group-footer-group .field:focus-within .field__input,
+.footer .field:focus-within .field__input {
+  border-bottom: 1px solid var(--rt-hover-color, var(--rt-gold)) !important;
+  outline: none !important;
+  box-shadow: none !important;
+  background: transparent !important;
+}
+
+.shopify-section-group-footer-group .field__input::placeholder,
+.footer .field__input::placeholder,
+.shopify-section-group-footer-group .field__label,
+.footer .field__label {
+  color: rgba(255, 255, 255, 0.4) !important;
+  font-family: var(--rt-font-body) !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.1em !important;
+  font-size: 0.8rem !important;
+}
+
+/* Hide the floating label completely to avoid conflicts */
+.shopify-section-group-footer-group .field__label,
+.footer .field__label {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
+
+/* Newsletter Button */
+.shopify-section-group-footer-group .newsletter-form__button,
+.footer .newsletter-form__button {
+  background: transparent !important;
+  color: #FFFFFF !important;
+  border: none !important;
+  box-shadow: none !important;
+  transition: color var(--rt-transition-normal) !important;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: auto !important;
+  height: auto !important;
+  padding: 0.5rem !important;
+}
+
+.shopify-section-group-footer-group .newsletter-form__button:hover,
+.footer .newsletter-form__button:hover {
+  color: var(--rt-hover-color, var(--rt-gold)) !important;
+  background: transparent !important;
+}
+
+.shopify-section-group-footer-group .newsletter-form__button svg,
+.footer .newsletter-form__button svg {
+  width: 1.5rem !important;
+  height: 1.5rem !important;
+  fill: currentColor !important;
+}
+
+/* 6. Social Icons */
+.shopify-section-group-footer-group .list-social__item .icon,
+.footer .list-social__item .icon {
+  width: 1.2rem !important;
+  height: 1.2rem !important;
+  color: #8e8e93 !important;
+  transition: color var(--rt-transition-normal), transform var(--rt-transition-normal) !important;
+}
+
+.shopify-section-group-footer-group .list-social__item:hover .icon,
+.footer .list-social__item:hover .icon {
+  color: var(--rt-hover-color, var(--rt-gold)) !important;
+  transform: translateY(-2px) !important;
+}
+
+/* 7. Footer Bottom (Copyright, Utilities) */
+.footer__content-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.05) !important;
+  padding-top: 1.5rem !important;
+  padding-bottom: 1.5rem !important;
+}
+
+.footer__copyright {
+  font-size: 0.75rem !important;
+  color: rgba(142, 142, 147, 0.6) !important;
+  letter-spacing: 0.05em !important;
+}
+
+.footer__copyright a {
+  color: rgba(142, 142, 147, 0.8) !important;
+  text-decoration: none !important;
+}
+
+.footer__copyright a:hover {
+  color: var(--rt-hover-color, var(--rt-gold)) !important;
+}
 

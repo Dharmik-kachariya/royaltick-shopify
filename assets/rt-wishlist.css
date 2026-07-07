@@ -295,7 +295,7 @@
 }
 
 .rt-wishlist-empty__icon {
-  margin-bottom: 24px;
+  display: none;
 }
 
 .rt-wishlist-empty__heading {

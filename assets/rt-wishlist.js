@@ -118,10 +118,10 @@ class RTWishlistManager {
 
   // Bind clicks dynamically (delegation)
   bindEvents() {
-    // Add event delegation for wishlist buttons
     document.addEventListener('click', (e) => {
-      const btn = e.target.closest('.rt-card-wishlist-btn, .rt-pdp-wishlist-btn');
-      if (btn) {
+      // Find the closest button having either class or data-product-handle
+      const btn = e.target.closest('.rt-card-wishlist-btn, .rt-pdp-wishlist-btn, [data-product-handle]');
+      if (btn && (btn.classList.contains('rt-card-wishlist-btn') || btn.classList.contains('rt-pdp-wishlist-btn'))) {
         e.preventDefault();
         e.stopPropagation();
         this.toggleProduct(btn);
@@ -154,7 +154,7 @@ class RTWishlistManager {
       this.setButtonState(handle, true);
       this.showToast('Added to Wishlist');
       
-      // Redirect to wishlist page immediately on add
+      // Redirect to wishlist page immediately on add for all buttons (PDP and Card Grid)
       setTimeout(() => {
         window.location.href = '/pages/wishlist';
       }, 500);

@@ -79,23 +79,7 @@
   {%- endunless -%}
 >
   {%- unless onboarding -%}
-    <!-- Top Right: Floating Glass Action Buttons -->
-    <div class="rt-card-top-right-actions">
-      <!-- Wishlist -->
-      <button type="button" class="rt-card-action-btn rt-card-wishlist-btn" aria-label="Add to Wishlist" data-product-id="{{ product.id }}" data-product-handle="{{ product.handle }}">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="rt-heart-icon"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
-      </button>
-      
-      <!-- Compare -->
-      <button type="button" class="rt-card-action-btn rt-card-compare-btn" aria-label="Compare Product" data-product-id="{{ product.id }}">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 3h5v5M4 20h5v5M21 3L12 12M3 21l9-9"></path></svg>
-      </button>
 
-      <!-- Quick View -->
-      <button type="button" class="rt-card-action-btn rt-card-quick-view-btn" aria-label="Quick View" data-product-handle="{{ product.handle }}">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="22" y1="12" x2="18" y2="12"></line><line x1="6" y1="12" x2="2" y2="12"></line><line x1="12" y1="6" x2="12" y2="2"></line><line x1="12" y1="22" x2="12" y2="18"></line></svg>
-      </button>
-    </div>
     
     <!-- Top Left: Custom Merchant-Editable Badges (Luxury styles) -->
     <div class="rt-card-badges">

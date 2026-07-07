@@ -12,7 +12,7 @@
             "vertical_on_mobile": true,
             "horizontal_alignment": "flex-start",
             "vertical_alignment": "flex-start",
-            "gap": 16,
+            "gap": 24,
             "width": "fill",
             "custom_width": 100,
             "width_mobile": "fill",
@@ -35,7 +35,7 @@
             "logo_block": {
               "type": "logo",
               "settings": {
-                "pixel_height": 32,
+                "pixel_height": 40,
                 "unit": "pixels",
                 "inverse": false
               }
@@ -43,7 +43,7 @@
             "description_block": {
               "type": "text",
               "settings": {
-                "text": "<p>RoyalTick – Curators of the world's finest luxury watches. Elegance, precision, and heritage on your wrist.</p>",
+                "text": "<p>RoyalTick represents the pinnacle of luxury watch curation. We connect passionate collectors and visionaries with authentic Swiss timepieces that transcend generations.</p>",
                 "width": "100%",
                 "max_width": "normal",
                 "alignment": "left",
@@ -70,8 +70,8 @@
         "column_2_menu": {
           "type": "menu",
           "settings": {
-            "heading": "Shop",
-            "menu": "footer",
+            "heading": "Collections",
+            "menu": "main-menu",
             "show_as_accordion": false,
             "heading_preset": "h4"
           }
@@ -79,7 +79,7 @@
         "column_3_menu": {
           "type": "menu",
           "settings": {
-            "heading": "Customer",
+            "heading": "Our Heritage",
             "menu": "footer",
             "show_as_accordion": false,
             "heading_preset": "h4"
@@ -115,11 +115,21 @@
             "newsletter_heading": {
               "type": "text",
               "settings": {
-                "text": "<h4>Newsletter</h4>",
+                "text": "<h4>Exclusive Updates</h4>",
                 "width": "100%",
                 "max_width": "normal",
                 "alignment": "left",
                 "type_preset": "h4"
+              }
+            },
+            "newsletter_description": {
+              "type": "text",
+              "settings": {
+                "text": "<p>Subscribe to receive exclusive access to private collection drops and heritage watch releases.</p>",
+                "width": "100%",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "rte"
               }
             },
             "newsletter_signup": {
@@ -131,7 +141,7 @@
                 "border_style": "all",
                 "input_style": "custom",
                 "border_width": 1,
-                "border_radius": 4,
+                "border_radius": 24,
                 "input_type_preset": "paragraph",
                 "style_class": "button-unstyled",
                 "display_type": "arrow",
@@ -147,6 +157,7 @@
           },
           "block_order": [
             "newsletter_heading",
+            "newsletter_description",
             "newsletter_signup"
           ]
         }
@@ -160,10 +171,10 @@
       "name": "t:names.footer",
       "settings": {
         "section_width": "page-width",
-        "gap": 48,
-        "background_color": "#0b0b0b",
-        "padding-block-start": 80,
-        "padding-block-end": 80
+        "gap": 64,
+        "background_color": "#0B0B0B",
+        "padding-block-start": 100,
+        "padding-block-end": 100
       }
     },
     "footer_utilities_jLGE8U": {
