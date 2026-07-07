@@ -109,10 +109,43 @@
 <div class="luxury-recommendations-section">
   <h2 class="luxury-recommendations-title">{{ section.settings.title }}</h2>
   
-  <luxury-product-recommendations class="luxury-recommendations-wrapper" data-url="{{ routes.product_recommendations_url }}?limit={{ section.settings.limit }}&section_id={{ section.id }}&product_id={{ cart.items.first.product.id }}">
+  {% liquid
+    assign recommend_product_id = cart.items.first.product.id
+    if recommend_product_id == blank
+      # Fallback to first product in collections if cart is empty
+      assign recommend_product_id = collections.all.products.first.id
+    endif
+  %}
+  
+  <luxury-product-recommendations class="luxury-recommendations-wrapper" data-url="{{ routes.product_recommendations_url }}?limit={{ section.settings.limit }}&section_id={{ section.id }}&product_id={{ recommend_product_id }}">
     {% if recommendations.performed and recommendations.products_count > 0 %}
       <div class="luxury-recommendations-grid">
         {% for product in recommendations.products %}
+          <div class="luxury-rec-card">
+            <a href="{{ product.url }}" class="luxury-rec-card-link">
+              <img src="{{ product.featured_image | image_url: width: 400 }}" class="luxury-rec-image" alt="{{ product.title | escape }}" loading="lazy">
+              <div class="luxury-rec-info">
+                {% if product.vendor %}
+                  <span class="luxury-rec-vendor">{{ product.vendor }}</span>
+                {% endif %}
+                  <h3 class="luxury-rec-title">{{ product.title }}</h3>
+                <span class="luxury-rec-price">{{ product.price | money }}</span>
+              </div>
+            </a>
+            
+            <product-form-component data-section-id="{{ section.id }}" data-product-id="{{ product.id }}">
+              {%- form 'product', product -%}
+                <input type="hidden" name="id" value="{{ product.variants.first.id }}">
+                <button type="submit" class="luxury-rec-add">Add to Cart</button>
+              {%- endform -%}
+            </product-form-component>
+          </div>
+        {% endfor %}
+      </div>
+    {% else %}
+      <!-- Fallback catalog selection when recommendations API hasn't loaded / resolved yet -->
+      <div class="luxury-recommendations-grid">
+        {% for product in collections.all.products limit: section.settings.limit %}
           <div class="luxury-rec-card">
             <a href="{{ product.url }}" class="luxury-rec-card-link">
               <img src="{{ product.featured_image | image_url: width: 400 }}" class="luxury-rec-image" alt="{{ product.title | escape }}" loading="lazy">
