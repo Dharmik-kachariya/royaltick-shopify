@@ -179,7 +179,7 @@
               </a>
             {%- endif -%}
             {%- if section.settings.rt_button_secondary != blank -%}
-              <a href="{{ section.settings.rt_button_secondary_link | default: '#' }}" class="rt-limited-edition__btn rt-limited-edition__btn--secondary">
+              <a href="{{ section.settings.rt_button_secondary_link | default: routes.all_products_collection_url }}" class="rt-limited-edition__btn rt-limited-edition__btn--secondary">
                 {{ section.settings.rt_button_secondary | escape }}
               </a>
             {%- endif -%}
